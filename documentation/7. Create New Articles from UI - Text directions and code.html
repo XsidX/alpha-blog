@@ -1,0 +1,83 @@
+<p>In the config/routes.rb file add the following line to add all the routes for articles:</p>
+
+<p>resources :articles</p>
+
+<p>This will add the following routes:</p>
+
+<p>routes            path        HTTP verb     link           controller#action     </p>
+
+<p>articles index   articles       GET         /articles       articles#index</p>
+
+<p>new article      new_article    GET         /articles/new   articles#new </p>
+
+<p>create article                  POST        /articles       articles#create</p>
+
+<p>edit article     edit_article   GET         /articles/:id   articles#edit</p>
+
+<p>update article                  PATCH       /articles/:id   articles#update</p>
+
+<p>show article     article        GET         /articles/:id   articles#show</p>
+
+<p>delete article                  DELETE      /articles/:id   articles#destroy</p>
+
+<p>To create articles controller with a new action, under app/controllers create a file named articles_controller.rb (snake case):</p>
+
+<p>class ArticlesController &lt; ApplicationController</p>
+
+<p>  def new</p>
+
+<p>    @article = Article.new</p>
+
+<p>  end</p>
+
+<p>end</p>
+
+<p>To create a view, under app/views create a folder named articles and within it create a file named new.html.erb then fill in the following:</p>
+
+<p>&lt;h1&gt;Create an article&lt;/h1&gt;</p>
+
+<p>&lt;%= form_for @article do |f| %&gt;</p>
+
+<p>&lt;p&gt;</p>
+
+<p>&lt;%= f.label :title %&gt;&lt;br/&gt;</p>
+
+<p>&lt;%= f.text_field :title %&gt;</p>
+
+<p>&lt;/p&gt;</p>
+
+<p>&lt;p&gt;</p>
+
+<p>&lt;%= f.label :description %&gt;&lt;br/&gt;</p>
+
+<p>&lt;%= f.text_area :description %&gt;</p>
+
+<p>&lt;/p&gt;</p>
+
+<p>&lt;p&gt;</p>
+
+<p>&lt;%= f.submit %&gt;</p>
+
+<p>&lt;/p&gt;</p>
+
+<p>&lt;% end %&gt;</p>
+
+<p>Create action and private article_params method for string parameters in the articles controller (Note: This is not complete):</p>
+
+<p>def create</p>
+
+<p>@article = Article.new(article_params)</p>
+
+<p>@article.save</p>
+
+<p>redirect_to article_path(@article)</p>
+
+<p>end</p>
+
+<p>private</p>
+
+<p>def article_params</p>
+
+<p>params.require(:article).permit(:title, :description)</p>
+
+<p><span></span>end</p>

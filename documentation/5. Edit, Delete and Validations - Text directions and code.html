@@ -1,0 +1,29 @@
+<p>To find an article with id 2 and edit it's title:</p>
+
+<p>article = Article.find(2)     # Here assumption is article with id of 2 was being looked for</p>
+
+<p>article.title = "This is an edited title"</p>
+
+<p>article.save</p>
+
+<p>To delete an article, example with id 5:</p>
+
+<p>article = Article.find(5)</p>
+
+<p>article.destroy</p>
+
+<p>To add validations presence and length validations to article model for title and description:</p>
+
+<p>class Article &lt; ActiveRecord::Base</p>
+
+<p>  validates :title, presence: true, length: {minimum: 3, maximum: 50}</p>
+
+<p>  validates :description, presence: true, length: {minimum: 10, maximum: 300}</p>
+
+<p>end</p><p>If using Rails 5, the first line above would be -&gt;&nbsp;class Article &lt; ApplicationRecord</p>
+
+<p>To find errors in article object while saving (if it's rolled back):</p>
+
+<p>article.errors.any?</p>
+
+<p>article.errors.full_messages</p>

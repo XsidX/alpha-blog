@@ -1,0 +1,101 @@
+<p>Model name: Article, class: Article -&gt; Capitalized A and singular</p>
+
+<p>File name: article.rb -&gt; singular and all lowercase</p>
+
+<p>Controller file name: articles_controller.rb, class: ArticlesController -&gt; camel case class name, snake case file name both plural</p>
+
+<p>Views folder: articles</p>
+
+<p>Table name: articles -&gt; plural of model</p>
+
+<p>Model name: User, class: User -&gt; Capitalized U and singular</p>
+
+<p>File name: user.rb -&gt; singular and all lowercase</p>
+
+<p>Controller file name: users_controller.rb, class: UsersController -&gt; camel case class name, snake case file name both plural</p>
+
+<p>Views folder: users </p>
+
+<p>Table name: users -&gt; plural of model</p>
+
+<p>To generate a migration to create a table (in this example articles):</p>
+
+<p>rails generate migration create_articles</p>
+
+<p>To add attributes for the table in the migration file, add the following inside create_table block:</p>
+
+<p>t.string :title</p>
+
+<p>t.text :description</p>
+
+<p>t.timestamps</p>
+
+<p>To run the migration file and create the articles table:</p>
+
+<p>rake db:migrate</p>
+
+<p>OR</p>
+
+<p>bundle exec rake db:migrate</p><p>If using Rails 5 -&gt;&nbsp;rails db:migrate</p>
+
+<p>To rollback a migration (undo the last migration):</p>
+
+<p>rake db:rollback</p><p>If using Rails 5 -&gt;&nbsp;rails db:rollback</p>
+
+<p>To add a column (example: created_at column) to the articles table:</p>
+
+<p>rails generate migration add_created_at_to_articles</p>
+
+<p>Then within the def change method in the migration file:</p>
+
+<p>add_column :articles, :created_at, :datetime</p>
+
+<p>To add a different column (example: name) to a users table:</p>
+
+<p>rails generate migration add_name_to_users</p>
+
+<p>Then within the def change method in the migration file:</p>
+
+<p>add_column :users, :name, :string</p>
+
+<p>In the above two adding column methods, the first argument is the name of the table, second is the attribute name and third is the type</p>
+
+<p>To create a model file for Article:</p>
+
+<p>- In the app/models folder create a file called article.rb</p>
+
+<p>- Fill it in with the following -&gt;</p>
+
+<p>class Article &lt; ActiveRecord::Base</p>
+
+<p>end</p><p>If using Rails 5 -&gt;</p><p>class&nbsp;Article &lt; ApplicationRecord</p><p>end</p>
+
+<p>To start the rails console:</p>
+
+<p>rails console</p>
+
+<p>To test connection to the articles table:</p>
+
+<p>Article.all  # classname.all will list all the articles in the articles table</p>
+
+<p>Then simply type in Article (classname) to view the attributes</p>
+
+<p>To create a new article with attributes title and description:</p>
+
+<p>article = Article.new(title: "This is a test title", description: "This is a test description")</p>
+
+<p>article.save</p>
+
+<p>OR</p>
+
+<p>article = Article.new</p>
+
+<p>article.title = "This is a test title"</p>
+
+<p>article.description = "This is a test description"</p>
+
+<p>article.save</p>
+
+<p>Another method to do the same:</p>
+
+<p>article = Article.create(title: "This is a test title", description: "This is a test description") # This will hit the table right away without needing the article.save line</p>
