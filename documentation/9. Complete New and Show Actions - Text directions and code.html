@@ -1,0 +1,73 @@
+<p>Completed create action in articles controller:</p>
+
+<p>  def create</p>
+
+<p>    @article = Article.new(article_params)</p>
+
+<p>    if @article.save</p>
+
+<p>      flash[:notice] = "Article was successfully created"</p>
+
+<p>      redirect_to article_path(@article)</p>
+
+<p>    else</p>
+
+<p>      render 'new'</p>
+
+<p>    end</p>
+
+<p>  end</p>
+
+<p>Flash message code added to application.html.erb under app/views/layouts folder (right under &lt;body&gt; and above &lt;%= yield %&gt;:</p>
+
+<p>  &lt;% flash.each do |name, msg| %&gt;</p>
+
+<p>    &lt;ul&gt;</p>
+
+<p>      &lt;li&gt;&lt;%= msg %&gt;&lt;/li&gt;</p>
+
+<p>    &lt;/ul&gt;</p>
+
+<p>  &lt;% end %&gt;</p>
+
+<p>Code added to display errors in the new.html.erb template under app/views/articles folder:</p>
+
+<p>&lt;% if @article.errors.any? %&gt;</p>
+
+<p>  &lt;h2&gt;The following errors prevented the article from getting created&lt;/h2&gt;</p>
+
+<p>  &lt;ul&gt;</p>
+
+<p>    &lt;% @article.errors.full_messages.each do |msg| %&gt;</p>
+
+<p>    &lt;li&gt;&lt;%= msg %&gt;&lt;/li&gt;</p>
+
+<p>    &lt;% end %&gt;</p>
+
+<p>  &lt;/ul&gt;</p>
+
+<p>&lt;% end %&gt;</p>
+
+<p>To create the show action, add the following show method to articles_controller.rb file:</p>
+
+<p>def show</p>
+
+<p>  @article = Article.find(params[:id])</p>
+
+<p>end</p>
+
+<p>To create the show view, add a show.html.erb file under the app/views/articles folder and fill in the code:</p>
+
+<p>&lt;h1&gt;Showing selected article&lt;/h1&gt;</p>
+
+<p>&lt;p&gt;</p>
+
+<p>  Title: &lt;%= @article.title %&gt;</p>
+
+<p>&lt;/p&gt;</p>
+
+<p>&lt;p&gt;</p>
+
+<p>  Description: &lt;%= @article.description %&gt;</p>
+
+<p>&lt;/p&gt;</p>
