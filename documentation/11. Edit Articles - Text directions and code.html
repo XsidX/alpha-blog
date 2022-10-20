@@ -1,0 +1,77 @@
+<p>Route for editing articles takes the form -&gt;</p>
+
+<p>/articles/:id/edit</p>
+
+<p>Edit action in the articles controller:</p>
+
+<p>def edit</p>
+
+<p>  @article = Article.find(params[:id])</p>
+
+<p>end</p>
+
+<p>Update action in the articles controller:</p>
+
+<p>def update</p>
+
+<p>  @article = Article.find(params[:id])</p>
+
+<p>  if @article.update(article_params)</p>
+
+<p>    flash[:notice] = "Article was successfully updated"</p>
+
+<p>    redirect_to article_path(@article)</p>
+
+<p>  else</p>
+
+<p>    render 'edit'</p>
+
+<p>  end</p>
+
+<p>end</p>
+
+<p>To create edit template, create a file named edit.html.erb under the app/views/articles folder and fill in the following code:</p>
+
+<p>&lt;h1&gt;Edit existing article&lt;/h1&gt;</p>
+
+<p>&lt;% if @article.errors.any? %&gt;</p>
+
+<p>&lt;h2&gt;The following errors prevented the article from getting created&lt;/h2&gt;</p>
+
+<p>&lt;ul&gt;</p>
+
+<p>  &lt;% @article.errors.full_messages.each do |msg| %&gt;</p>
+
+<p>  &lt;li&gt;&lt;%= msg %&gt;&lt;/li&gt;</p>
+
+<p>  &lt;% end %&gt;</p>
+
+<p>&lt;/ul&gt;</p>
+
+<p>&lt;% end %&gt;</p>
+
+<p>&lt;%= form_for @article do |f| %&gt;</p>
+
+<p>  &lt;p&gt;</p>
+
+<p>    &lt;%= f.label :title %&gt;&lt;br/&gt;</p>
+
+<p>    &lt;%= f.text_field :title %&gt;</p>
+
+<p>  &lt;/p&gt;</p>
+
+<p>  &lt;p&gt;</p>
+
+<p>    &lt;%= f.label :description %&gt;&lt;br/&gt;</p>
+
+<p>    &lt;%= f.text_area :description %&gt;</p>
+
+<p>  &lt;/p&gt;</p>
+
+<p>  &lt;p&gt;</p>
+
+<p>    &lt;%= f.submit %&gt;</p>
+
+<p>  &lt;/p&gt;</p>
+
+<p>&lt;% end %&gt;</p>
